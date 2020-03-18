@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjAgil.Model.Entidades;
 
-namespace ProjAgil.Infra.Data
+namespace ProjAgil.Infra.Data.Context
 {
     public class DataContext : DbContext
     {

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjAgil.Model.Entidades;
 using ProjAgil.Infra.Data;
+using ProjAgil.Model.Interfaces.Aplicacao;
+using Microsoft.AspNetCore.Http;
 
 namespace ProjAgil.WebAPI.Controllers
 {
@@ -12,41 +14,40 @@ namespace ProjAgil.WebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly DataContext dataContext;
-        public ValuesController(DataContext dataContext)
+        private readonly IEventoAppService eventoAppService;
+        public ValuesController(IEventoAppService eventoAppService)
         {
-            this.dataContext = dataContext;
+            this.eventoAppService = eventoAppService;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Evento>> Get()
+        public async Task<ActionResult<IEnumerable<Evento>>> Get()
         {
-            return dataContext.Eventos.ToList();
+            try
+            {
+                var results = await eventoAppService.ObterTodos();
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados Falhou!");
+            }
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<Evento> Get(int id)
+        public async Task< ActionResult<Evento>> Get(int id)
         {
-            return new Evento[] {
-                new Evento() {
-                    EventoId = 1,
-                    Tema = "Angular e .net core",
-                    Local = "São Paulo",
-                    Lote = "1º lote",
-                    QtdPessoas = 22,
-                    DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy"),
-                },
-                new Evento() {
-                    EventoId = 2,
-                    Tema = "Angular e suas novidades",
-                    Local = "São Bernado",
-                    Lote = "2º lote",
-                    QtdPessoas = 22,
-                    DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy"),
-                }
-             }.FirstOrDefault(x => x.EventoId == id);
+            try
+            {
+                var result = await eventoAppService.ObterByEventoId(id);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados Falhou!");
+            }
         }
 
         // POST api/values
