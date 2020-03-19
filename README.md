@@ -1,36 +1,29 @@
-# DOTNETCORE
+# .NET CORE
 
-DotNet EF comandos
+## .Net EF comandos para criar o banco de dados.
+
 Com o CMD na pasta \ProjAgil.Infra.Data>
 
 dotnet ef --startup-project ../ProjAgil.webapi/ migrations add Initial
 
 dotnet ef --startup-project ../ProjAgil.webapi/ database update
 
-# ProAgilApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+Comando para incluir referencias.
 
-## Development server
+## WebAPI
+DOTNETCORE\ProjAgil.WebAPI> dotnet add reference ..\ProjAgil.Infra.IoC\ProjAgil.Infra.IoC.csproj
+DOTNETCORE\ProjAgil.WebAPI> dotnet add reference ..\ProjAgil.Dominio\ProjAgil.Dominio.csproj
+DOTNETCORE\ProjAgil.WebAPI> dotnet add reference ..\ProjAgil.Infra.Data\ProjAgil.Infra.Data.csproj
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Data
+DOTNETCORE\ProjAgil.Infra.Data> dotnet add reference ..\ProjAgil.Dominio\ProjAgil.Dominio.csproj
 
-## Code scaffolding
+## Application
+DOTNETCORE\ProjAgil.Application> dotnet add reference ..\ProjAgil.Dominio\ProjAgil.Dominio.csproj
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## IoC
+DOTNETCORE\ProjAgil.Infra.IoC> dotnet add reference ..\ProjAgil.Dominio\ProjAgil.Dominio.csproj
+DOTNETCORE\ProjAgil.Infra.IoC> dotnet add reference ..\ProjAgil.Infra.Data\ProjAgil.Infra.Data.csproj
+DOTNETCORE\ProjAgil.Infra.IoC> dotnet add reference ..\ProjAgil.Application\ProjAgil.Application.csproj
+DOTNETCORE\ProjAgil.Infra.IoC> dotnet add reference ..\ProjAgil.Dominio\ProjAgil.Dominio.csproj
