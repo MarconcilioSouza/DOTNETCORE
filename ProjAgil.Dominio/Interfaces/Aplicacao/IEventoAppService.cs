@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjAgil.Model.Entidades;
+using ProjAgil.Dominio.Entidades;
 
-namespace ProjAgil.Model.Interfaces.Aplicacao
+namespace ProjAgil.Dominio.Interfaces.Aplicacao
 {
     public interface IEventoAppService
     {
-         Task<List<Evento>> ObterTodos();
-         Task<Evento> ObterByEventoId(int eventoId);
+        Task<List<Evento>> ObterEventosAsync(bool incluirPalestrates = false);
+        Task<List<Evento>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates);
+        Task<Evento> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates);
     }
 }

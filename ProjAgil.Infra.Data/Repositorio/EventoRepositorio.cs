@@ -1,29 +1,64 @@
+using System.Linq;
 using System.Collections.Generic;
 using ProjAgil.Infra.Data.Context;
-using ProjAgil.Model.Entidades;
-using ProjAgil.Model.Interfaces.Repositorio;
-using System.Linq;
+using ProjAgil.Dominio.Entidades;
+using ProjAgil.Dominio.Interfaces.Repositorio;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjAgil.Infra.Data.Repositorio
 {
-    public class EventoRepositorio : IEventoRepositorio
+    public class EventoRepositorio : RepositorioBase<Evento>, IEventoRepositorio
     {
-        private readonly DataContext dataContext;
-        public EventoRepositorio(DataContext dataContext)
+        public EventoRepositorio(ProAgilContext proAgilContext) : base(proAgilContext) {}
+
+        public async Task<List<Evento>> ObterEventosAsync(bool incluirPalestrates = false)
         {
-            this.dataContext = dataContext;
+            IQueryable<Evento> query = proAgilContext.Eventos
+                .Include(c => c.Lotes)
+                .Include(c => c.RedesSociais);
+
+            if(incluirPalestrates)
+                query.Include(c => c.PalestrantesEventos)
+                    .ThenInclude(c => c.Palestrante);
+
+            query = query.OrderByDescending(c => c.DataEvento);
+
+            return await query.ToListAsync();
         }
 
-        public async Task<Evento> ObterByEventoId(int eventoId)
+        public async Task<List<Evento>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates)
         {
-            return await dataContext.Eventos.FirstOrDefaultAsync(x => x.EventoId == eventoId);
+            IQueryable<Evento> query = proAgilContext.Eventos
+                .Include(c => c.Lotes)
+                .Include(c => c.RedesSociais);
+
+            if(incluirPalestrates)
+                query.Include(c => c.PalestrantesEventos)
+                    .ThenInclude(c => c.Palestrante);
+
+            query = query
+                .Where(c => c.Tema.ToLower().Contains(tema.ToLower()))
+                .OrderByDescending(c => c.DataEvento);
+
+            return await query.ToListAsync();
         }
 
-        public async Task<List<Evento>> ObterTodos()
+        public async Task<Evento> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates)
         {
-            return await dataContext.Eventos.ToListAsync();
+            IQueryable<Evento> query = proAgilContext.Eventos
+                .Include(c => c.Lotes)
+                .Include(c => c.RedesSociais);
+
+            if(incluirPalestrates)
+                query.Include(c => c.PalestrantesEventos)
+                    .ThenInclude(c => c.Palestrante);
+
+            query = query
+                .Where(c => c.Id == eventoId)
+                .OrderByDescending(c => c.DataEvento);
+
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

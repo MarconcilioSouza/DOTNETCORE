@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjAgil.Model.Entidades;
-using ProjAgil.Model.Interfaces.Aplicacao;
-using ProjAgil.Model.Interfaces.Repositorio;
+using ProjAgil.Dominio.Entidades;
+using ProjAgil.Dominio.Interfaces.Aplicacao;
+using ProjAgil.Dominio.Interfaces.Repositorio;
 
 namespace ProjAgil.Application.Services
 {
-    public class EventoAppService : IEventoAppService
+    public class EventoAppService : IAppServeceBase<Evento>, IEventoAppService
     {
         private readonly IEventoRepositorio eventoRepositorio;
         public EventoAppService(IEventoRepositorio eventoRepositorio)
@@ -14,14 +14,39 @@ namespace ProjAgil.Application.Services
             this.eventoRepositorio = eventoRepositorio;
         }
 
-        public async Task<Evento> ObterByEventoId(int eventoId)
+        public void Add(Evento entity)
         {
-            return await eventoRepositorio.ObterByEventoId(eventoId);
+            eventoRepositorio.Add(entity);
         }
 
-        public async Task<List<Evento>> ObterTodos()
+        public void Update(Evento entity)
         {
-            return await eventoRepositorio.ObterTodos();
+            eventoRepositorio.Update(entity);
+        }
+
+        public void Delete(Evento entity)
+        {
+            eventoRepositorio.Delete(entity);
+        }
+
+        public async Task<Evento> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates)
+        {
+            return await eventoRepositorio.ObterEventoAsyncPorEventoId(eventoId, incluirPalestrates);
+        }
+
+        public async Task<List<Evento>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates)
+        {
+            return await eventoRepositorio.ObterEventoAsyncPorTema(tema, incluirPalestrates);
+        }
+
+        public async Task<List<Evento>> ObterEventosAsync(bool incluirPalestrates = false)
+        {
+            return await eventoRepositorio.ObterEventosAsync(incluirPalestrates);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await eventoRepositorio.SaveChangesAsync();
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjAgil.Model.Entidades;
+using ProjAgil.Dominio.Entidades;
 using ProjAgil.Infra.Data;
-using ProjAgil.Model.Interfaces.Aplicacao;
+using ProjAgil.Dominio.Interfaces.Aplicacao;
 using Microsoft.AspNetCore.Http;
 
 namespace ProjAgil.WebAPI.Controllers
@@ -26,7 +26,7 @@ namespace ProjAgil.WebAPI.Controllers
         {
             try
             {
-                var results = await eventoAppService.ObterTodos();
+                var results = await eventoAppService.ObterEventosAsync();
                 return Ok(results);
             }
             catch (System.Exception)
@@ -37,11 +37,11 @@ namespace ProjAgil.WebAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task< ActionResult<Evento>> Get(int id)
+        public async Task<ActionResult<Evento>> Get(int id)
         {
             try
             {
-                var result = await eventoAppService.ObterByEventoId(id);
+                var result = await eventoAppService.ObterEventoAsyncPorEventoId(id, true);
                 return Ok(result);
             }
             catch (System.Exception)

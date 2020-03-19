@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjAgil.Application.Services;
 using ProjAgil.Infra.Data.Context;
 using ProjAgil.Infra.Data.Repositorio;
-using ProjAgil.Model.Interfaces.Aplicacao;
-using ProjAgil.Model.Interfaces.Repositorio;
+using ProjAgil.Dominio.Interfaces.Aplicacao;
+using ProjAgil.Dominio.Interfaces.Repositorio;
 
 namespace ProjAgil.Infra.IoC.Configurations
 {
@@ -27,7 +27,7 @@ namespace ProjAgil.Infra.IoC.Configurations
 
             // Infra - Data
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
-            services.AddScoped<DataContext>();
+            services.AddScoped<ProAgilContext>();
 
             // Infra - Data EventSourcing
 

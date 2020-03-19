@@ -13,7 +13,7 @@ namespace ProjAgil.Infra.IoC.Configurations
             if (services == null) 
                 throw new ArgumentNullException(nameof(services));
 
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ProAgilContext>(x => x.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }
