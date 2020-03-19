@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <ProjectReference Include="..\ProjAgil.Infra.IoC\ProjAgil.Infra.IoC.csproj"/>
-    <ProjectReference Include="..\ProjAgil.Model\ProjAgil.Model.csproj"/>
+    <ProjectReference Include="..\ProjAgil.Dominio\ProjAgil.Dominio.csproj"/>
     <ProjectReference Include="..\ProjAgil.Infra.Data\ProjAgil.Infra.Data.csproj"/>
   </ItemGroup>
 

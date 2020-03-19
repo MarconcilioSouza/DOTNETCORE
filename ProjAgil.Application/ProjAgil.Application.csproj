@@ -3,6 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjAgil.Model\ProjAgil.Model.csproj" />
+    <ProjectReference Include="..\ProjAgil.Dominio\ProjAgil.Dominio.csproj" />
   </ItemGroup>
 </Project>

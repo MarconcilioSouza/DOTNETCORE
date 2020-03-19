@@ -2,7 +2,9 @@
 
 DotNet EF comandos
 Com o CMD na pasta \ProjAgil.Infra.Data>
+
 dotnet ef --startup-project ../ProjAgil.webapi/ migrations add Initial
+
 dotnet ef --startup-project ../ProjAgil.webapi/ database update
 
 # ProAgilApp

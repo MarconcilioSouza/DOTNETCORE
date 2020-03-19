@@ -9,9 +9,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0"/>
     <PackageReference Include="AutoMapper" Version="9.0.0"/>
-    <ProjectReference Include="..\ProjAgil.Model\ProjAgil.Model.csproj"/>
+    <ProjectReference Include="..\ProjAgil.Dominio\ProjAgil.Dominio.csproj"/>
     <ProjectReference Include="..\ProjAgil.Infra.Data\ProjAgil.Infra.Data.csproj"/>
     <ProjectReference Include="..\ProjAgil.Application\ProjAgil.Application.csproj"/>
-    <ProjectReference Include="..\ProjAgil.Model\ProjAgil.Model.csproj"/>
+    <ProjectReference Include="..\ProjAgil.Dominio\ProjAgil.Dominio.csproj"/>
   </ItemGroup>
 </Project>
