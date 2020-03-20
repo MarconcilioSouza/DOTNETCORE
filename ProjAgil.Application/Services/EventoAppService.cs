@@ -6,7 +6,7 @@ using ProjAgil.Dominio.Interfaces.Repositorio;
 
 namespace ProjAgil.Application.Services
 {
-    public class EventoAppService : IAppServeceBase<Evento>, IEventoAppService
+    public class EventoAppService : IEventoAppService
     {
         private readonly IEventoRepositorio eventoRepositorio;
         public EventoAppService(IEventoRepositorio eventoRepositorio)

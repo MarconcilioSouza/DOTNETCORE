@@ -4,7 +4,7 @@ using ProjAgil.Dominio.Entidades;
 
 namespace ProjAgil.Dominio.Interfaces.Aplicacao
 {
-    public interface IEventoAppService
+    public interface IEventoAppService : IAppServeceBase<Evento>
     {
         Task<List<Evento>> ObterEventosAsync(bool incluirPalestrates = false);
         Task<List<Evento>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates);

@@ -50,5 +50,5 @@ bin
 obj
 
 .vccode
-.vc
+.vs
 .DS_Store

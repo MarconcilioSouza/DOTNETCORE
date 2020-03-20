@@ -10,6 +10,7 @@ namespace ProjAgil.Infra.IoC
         {
             DatabaseSetup.AddDatabaseSetup(services, configuration);
             DependencyInjectionSetup.AddDependencyInjectionSetup(services);
+            SwaggerSetup.AddSwaggerSetup(services);
         }
     }
 }

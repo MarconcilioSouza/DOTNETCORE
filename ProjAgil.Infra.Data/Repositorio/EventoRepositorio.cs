@@ -22,7 +22,9 @@ namespace ProjAgil.Infra.Data.Repositorio
                 query.Include(c => c.PalestrantesEventos)
                     .ThenInclude(c => c.Palestrante);
 
-            query = query.OrderByDescending(c => c.DataEvento);
+            query = query
+                .AsNoTracking()
+                .OrderByDescending(c => c.DataEvento);
 
             return await query.ToListAsync();
         }
@@ -38,6 +40,7 @@ namespace ProjAgil.Infra.Data.Repositorio
                     .ThenInclude(c => c.Palestrante);
 
             query = query
+                .AsNoTracking()
                 .Where(c => c.Tema.ToLower().Contains(tema.ToLower()))
                 .OrderByDescending(c => c.DataEvento);
 
@@ -55,6 +58,7 @@ namespace ProjAgil.Infra.Data.Repositorio
                     .ThenInclude(c => c.Palestrante);
 
             query = query
+                .AsNoTracking()
                 .Where(c => c.Id == eventoId)
                 .OrderByDescending(c => c.DataEvento);
 

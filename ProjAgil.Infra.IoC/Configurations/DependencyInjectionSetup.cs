@@ -20,6 +20,7 @@ namespace ProjAgil.Infra.IoC.Configurations
 
             // Application
             services.AddScoped<IEventoAppService, EventoAppService>();
+            services.AddScoped<IPalestranteAppServece, PalestranteAppServece>();
 
             // Domain - Events
 
@@ -27,6 +28,7 @@ namespace ProjAgil.Infra.IoC.Configurations
 
             // Infra - Data
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
+            services.AddScoped<IPalestranteRepositorio, PalestranteRepositorio>();
             services.AddScoped<ProAgilContext>();
 
             // Infra - Data EventSourcing

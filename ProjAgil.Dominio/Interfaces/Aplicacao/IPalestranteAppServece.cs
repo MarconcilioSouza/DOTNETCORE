@@ -4,7 +4,7 @@ using ProjAgil.Dominio.Entidades;
 
 namespace ProjAgil.Dominio.Interfaces.Aplicacao
 {
-    public interface IPalestranteAppServece
+    public interface IPalestranteAppServece : IAppServeceBase<Palestrante>
     {
          Task<Palestrante> ObterPalestranteAsyncPorPalestranteId(int palestranteId, bool incluirEventos);
          Task<List<Palestrante>> ObterPaletrantesAsyncPorNome(string nome, bool incluirEventos);  

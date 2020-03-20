@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProjAgil.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:ProjAgil.WebAPI.Controllers.EventoController">
+            <summary>
+            Controller de Eventos
+            </summary>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.#ctor(ProjAgil.Dominio.Interfaces.Aplicacao.IEventoAppService)">
+            <summary>
+            Contrutor Evento
+            </summary>
+            <param name="eventoAppService"></param>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Get">
+            <summary>
+            Retorna todos os eventos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Get(System.Int32)">
+            <summary>
+            Retorna o evento pelo id do evento
+            </summary>
+            <param name="eventoId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Get(System.String)">
+            <summary>
+            Retorna o evento pelo nome do tema
+            </summary>
+            <param name="tema"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Post(ProjAgil.Dominio.Entidades.Evento)">
+            <summary>
+            Adicionar um evento
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Put(System.Int32,ProjAgil.Dominio.Entidades.Evento)">
+            <summary>
+            Faz a atualização do evento
+            </summary>
+            <param name="eventoId"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Delete(System.Int32)">
+            <summary>
+            Delete um evento
+            </summary>
+            <param name="eventoId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProjAgil.WebAPI.Controllers.PalestranteController">
+            <summary>
+            Controller de palestrantes
+            </summary>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.#ctor(ProjAgil.Dominio.Interfaces.Aplicacao.IPalestranteAppServece)">
+            <summary>
+            Contrutor de palestrantes
+            </summary>
+            <param name="palestranteAppServece"></param>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Get(System.Int32)">
+            <summary>
+             GET: api/Palestrante
+            </summary>
+            <param name="palestranteId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Get(System.String)">
+            <summary>
+            GET: api/Palestrante/nome
+            </summary>
+            <param name="nome"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Post(ProjAgil.Dominio.Entidades.Palestrante)">
+            <summary>
+            POST: api/Palestrante
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Put(System.Int32,ProjAgil.Dominio.Entidades.Palestrante)">
+            <summary>
+            PUT: api/Palestrante/5
+            </summary>
+            <param name="palestranteId"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Delete(System.Int32)">
+            <summary>
+            DELETE: api/ApiWithActions/5
+            </summary>
+            <param name="palestranteId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

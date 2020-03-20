@@ -6,7 +6,7 @@ using ProjAgil.Dominio.Interfaces.Repositorio;
 
 namespace ProjAgil.Application.Services
 {
-    public class PalestranteAppServece : IAppServeceBase<Palestrante>, IPalestranteAppServece
+    public class PalestranteAppServece : IPalestranteAppServece
     {
          private readonly IPalestranteRepositorio palestranteRepositorio;
         public PalestranteAppServece(IPalestranteRepositorio palestranteRepositorio)

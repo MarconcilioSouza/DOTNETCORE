@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProjAgil.Infra.Data.Context;
 using ProjAgil.Infra.IoC;
+using Microsoft.Extensions.PlatformAbstractions;
+using System;
+using AutoMapper;
+using ProjAgil.Infra.IoC.Configurations;
 
 namespace ProjAgil.WebAPI
 {
@@ -24,6 +27,10 @@ namespace ProjAgil.WebAPI
             ConfigurationServices.ConfigureDependencyInjection(services, Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
+
+            // Configuração para não retorna referencia cicular no json
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +49,8 @@ namespace ProjAgil.WebAPI
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseStaticFiles();
             app.UseMvc();
+
+            SwaggerSetup.UseSwaggerSetup(app);
         }
     }
 }

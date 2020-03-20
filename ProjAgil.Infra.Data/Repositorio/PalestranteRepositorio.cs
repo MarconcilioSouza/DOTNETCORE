@@ -22,6 +22,7 @@ namespace ProjAgil.Infra.Data.Repositorio
                     .ThenInclude(c => c.Evento);
 
             query = query
+                .AsNoTracking() // não trava a requisição para outras requisições
                 .Where(c => c.Id == palestranteId)
                 .OrderBy(c => c.Nome);
 
@@ -38,6 +39,7 @@ namespace ProjAgil.Infra.Data.Repositorio
                     .ThenInclude(c => c.Evento);
 
             query = query
+                .AsNoTracking()
                 .Where(c => c.Nome.ToLower().Contains(nome.ToLower()))
                 .OrderBy(c => c.Nome);
 
