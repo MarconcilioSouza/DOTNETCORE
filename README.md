@@ -37,3 +37,11 @@ DOTNETCORE dotnet sln ProAgil.sln add ProjAgil.Application/ProjAgil.Application.
 DOTNETCORE dotnet sln ProAgil.sln add ProjAgil.Infra.IoC/ProjAgil.Infra.IoC.csproj<br />
 DOTNETCORE dotnet sln ProAgil.sln add ProjAgil.WebAPI/ProjAgil.WebAPI.csproj<br />
 
+
+### Instalções
+npm install -g @angular/cli <br />
+
+### Bibliotecas para usar com o Angular;
+
+<a href="https://valor-software.com/ngx-bootstrap/#/">ngx-bootstrap</a> <br />
+<a href="https://getbootstrap.com/">bootstrap</a> <br />
