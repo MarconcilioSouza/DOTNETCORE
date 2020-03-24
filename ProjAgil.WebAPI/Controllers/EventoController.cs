@@ -108,13 +108,13 @@ namespace ProjAgil.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Faz a atualização do evento
+        /// Faz a atualizaï¿½ï¿½o do evento
         /// </summary>
         /// <param name="eventoId"></param>
         /// <param name="model"></param>
         /// <returns></returns>
         // PUT api/Evento
-        [HttpPut]
+        [HttpPut("{eventoId}")]
         public async Task<IActionResult> Put(int eventoId, [FromBody] Evento model)
         {
             try
