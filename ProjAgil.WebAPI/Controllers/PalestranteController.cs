@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjAgil.Dominio.Entidades;
 using ProjAgil.Dominio.Interfaces.Aplicacao;
+using ProjAgil.Dominio.ViewModels;
 
 namespace ProjAgil.WebAPI.Controllers
 {
@@ -69,7 +70,7 @@ namespace ProjAgil.WebAPI.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Palestrante model)
+        public async Task<IActionResult> Post([FromBody] PalestranteViewModel model)
         {
             try
             {
@@ -93,7 +94,7 @@ namespace ProjAgil.WebAPI.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{palestranteId}")]
-        public async Task<IActionResult> Put(int palestranteId, [FromBody] Palestrante model)
+        public async Task<IActionResult> Put(int palestranteId, [FromBody] PalestranteViewModel model)
         {
             try
             {

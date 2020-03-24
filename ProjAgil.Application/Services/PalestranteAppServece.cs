@@ -1,42 +1,52 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using ProjAgil.Dominio.Entidades;
 using ProjAgil.Dominio.Interfaces.Aplicacao;
 using ProjAgil.Dominio.Interfaces.Repositorio;
+using ProjAgil.Dominio.ViewModels;
 
 namespace ProjAgil.Application.Services
 {
     public class PalestranteAppServece : IPalestranteAppServece
     {
          private readonly IPalestranteRepositorio palestranteRepositorio;
-        public PalestranteAppServece(IPalestranteRepositorio palestranteRepositorio)
+        private readonly IMapper mapper;
+
+        public PalestranteAppServece(IPalestranteRepositorio palestranteRepositorio, IMapper mapper)
         {
             this.palestranteRepositorio = palestranteRepositorio;
+            this.mapper = mapper;
         }
 
-        public void Add(Palestrante entity)
+        public void Add(PalestranteViewModel entity)
         {
-            palestranteRepositorio.Add(entity);
+            var palestrante = mapper.Map<Palestrante>(entity);
+            palestranteRepositorio.Add(palestrante);
         }
 
-        public void Update(Palestrante entity)
+        public void Update(PalestranteViewModel entity)
         {
-            palestranteRepositorio.Update(entity);
+            var palestrante = mapper.Map<Palestrante>(entity);
+            palestranteRepositorio.Update(palestrante);
         }
 
-        public void Delete(Palestrante entity)
+        public void Delete(PalestranteViewModel entity)
         {
-            palestranteRepositorio.Delete(entity);
+            var palestrante = mapper.Map<Palestrante>(entity);
+            palestranteRepositorio.Delete(palestrante);
         }
 
-        public async Task<Palestrante> ObterPalestranteAsyncPorPalestranteId(int palestranteId, bool incluirEventos)
+        public async Task<PalestranteViewModel> ObterPalestranteAsyncPorPalestranteId(int palestranteId, bool incluirEventos)
         {
-            return await palestranteRepositorio.ObterPalestranteAsyncPorPalestranteId(palestranteId, incluirEventos);
+            var palestrante = await palestranteRepositorio.ObterPalestranteAsyncPorPalestranteId(palestranteId, incluirEventos);
+            return mapper.Map<PalestranteViewModel>(palestrante);
         }
 
-        public async Task<List<Palestrante>> ObterPaletrantesAsyncPorNome(string nome, bool incluirEventos)
+        public async Task<List<PalestranteViewModel>> ObterPaletrantesAsyncPorNome(string nome, bool incluirEventos)
         {
-            return await palestranteRepositorio.ObterPaletrantesAsyncPorNome(nome, incluirEventos);
+            var palestrantes= await palestranteRepositorio.ObterPaletrantesAsyncPorNome(nome, incluirEventos);
+            return mapper.Map<List<PalestranteViewModel>>(palestrantes);
         }
 
         public async Task<bool> SaveChangesAsync()

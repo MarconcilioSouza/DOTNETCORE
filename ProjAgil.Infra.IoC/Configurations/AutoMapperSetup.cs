@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using Equinox.Application.AutoMapper;
 
 namespace ProjAgil.Infra.IoC.Configurations
 {
@@ -10,7 +11,7 @@ namespace ProjAgil.Infra.IoC.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-           // services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
         }
     }
 }

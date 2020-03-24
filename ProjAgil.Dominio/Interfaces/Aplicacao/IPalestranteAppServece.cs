@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjAgil.Dominio.Entidades;
+using ProjAgil.Dominio.ViewModels;
 
 namespace ProjAgil.Dominio.Interfaces.Aplicacao
 {
-    public interface IPalestranteAppServece : IAppServeceBase<Palestrante>
+    public interface IPalestranteAppServece : IAppServeceBase<PalestranteViewModel>
     {
-         Task<Palestrante> ObterPalestranteAsyncPorPalestranteId(int palestranteId, bool incluirEventos);
-         Task<List<Palestrante>> ObterPaletrantesAsyncPorNome(string nome, bool incluirEventos);  
+         Task<PalestranteViewModel> ObterPalestranteAsyncPorPalestranteId(int palestranteId, bool incluirEventos);
+         Task<List<PalestranteViewModel>> ObterPaletrantesAsyncPorNome(string nome, bool incluirEventos);  
     }
 }

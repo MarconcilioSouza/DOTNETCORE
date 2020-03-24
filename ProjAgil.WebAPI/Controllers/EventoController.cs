@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjAgil.Dominio.Entidades;
 using ProjAgil.Dominio.Interfaces.Aplicacao;
 using Microsoft.AspNetCore.Http;
+using ProjAgil.Dominio.ViewModels;
 
 namespace ProjAgil.WebAPI.Controllers
 {
@@ -89,7 +90,7 @@ namespace ProjAgil.WebAPI.Controllers
         /// <returns></returns>
         // POST api/Evento
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Evento model)
+        public async Task<IActionResult> Post([FromBody] EventoViewModel model)
         {
             try
             {
@@ -115,7 +116,7 @@ namespace ProjAgil.WebAPI.Controllers
         /// <returns></returns>
         // PUT api/Evento
         [HttpPut("{eventoId}")]
-        public async Task<IActionResult> Put(int eventoId, [FromBody] Evento model)
+        public async Task<IActionResult> Put(int eventoId, [FromBody] EventoViewModel model)
         {
             try
             {

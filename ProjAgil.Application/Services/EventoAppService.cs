@@ -1,47 +1,58 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using ProjAgil.Dominio.Entidades;
 using ProjAgil.Dominio.Interfaces.Aplicacao;
 using ProjAgil.Dominio.Interfaces.Repositorio;
+using ProjAgil.Dominio.ViewModels;
 
 namespace ProjAgil.Application.Services
 {
     public class EventoAppService : IEventoAppService
     {
         private readonly IEventoRepositorio eventoRepositorio;
-        public EventoAppService(IEventoRepositorio eventoRepositorio)
+        private readonly IMapper mapper;
+
+        public EventoAppService(IEventoRepositorio eventoRepositorio, IMapper mapper)
         {
             this.eventoRepositorio = eventoRepositorio;
+            this.mapper = mapper;
         }
 
-        public void Add(Evento entity)
+        public void Add(EventoViewModel entity)
         {
-            eventoRepositorio.Add(entity);
+            var evento = mapper.Map<Evento>(entity);
+            eventoRepositorio.Add(evento);
         }
 
-        public void Update(Evento entity)
+        public void Update(EventoViewModel entity)
         {
-            eventoRepositorio.Update(entity);
+            var evento = mapper.Map<Evento>(entity);
+            eventoRepositorio.Update(evento);
         }
 
-        public void Delete(Evento entity)
+        public void Delete(EventoViewModel entity)
         {
-            eventoRepositorio.Delete(entity);
+            var evento = mapper.Map<Evento>(entity);
+            eventoRepositorio.Delete(evento);
         }
 
-        public async Task<Evento> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates)
+        public async Task<EventoViewModel> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates)
         {
-            return await eventoRepositorio.ObterEventoAsyncPorEventoId(eventoId, incluirPalestrates);
+            var evento = await eventoRepositorio.ObterEventoAsyncPorEventoId(eventoId, incluirPalestrates);
+            return mapper.Map<EventoViewModel>(evento);
         }
 
-        public async Task<List<Evento>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates)
+        public async Task<List<EventoViewModel>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates)
         {
-            return await eventoRepositorio.ObterEventoAsyncPorTema(tema, incluirPalestrates);
+            var eventos = await eventoRepositorio.ObterEventoAsyncPorTema(tema, incluirPalestrates);
+            return mapper.Map<List<EventoViewModel>>(eventos);
         }
 
-        public async Task<List<Evento>> ObterEventosAsync(bool incluirPalestrates = false)
+        public async Task<List<EventoViewModel>> ObterEventosAsync(bool incluirPalestrates = false)
         {
-            return await eventoRepositorio.ObterEventosAsync(incluirPalestrates);
+            var eventos = await eventoRepositorio.ObterEventosAsync(incluirPalestrates);
+            return mapper.Map<List<EventoViewModel>>(eventos);
         }
 
         public async Task<bool> SaveChangesAsync()

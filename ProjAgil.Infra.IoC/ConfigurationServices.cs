@@ -9,6 +9,7 @@ namespace ProjAgil.Infra.IoC
         public static void ConfigureDependencyInjection(IServiceCollection services, IConfiguration configuration)
         {
             DatabaseSetup.AddDatabaseSetup(services, configuration);
+            AutoMapperSetup.AddAutoMapperSetup(services);
             DependencyInjectionSetup.AddDependencyInjectionSetup(services);
             SwaggerSetup.AddSwaggerSetup(services);
         }

@@ -35,14 +35,14 @@
             <param name="tema"></param>
             <returns></returns>
         </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Post(ProjAgil.Dominio.Entidades.Evento)">
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Post(ProjAgil.Dominio.ViewModels.EventoViewModel)">
             <summary>
             Adicionar um evento
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Put(System.Int32,ProjAgil.Dominio.Entidades.Evento)">
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Put(System.Int32,ProjAgil.Dominio.ViewModels.EventoViewModel)">
             <summary>
             Faz a atualiza��o do evento
             </summary>
@@ -82,14 +82,14 @@
             <param name="nome"></param>
             <returns></returns>
         </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Post(ProjAgil.Dominio.Entidades.Palestrante)">
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Post(ProjAgil.Dominio.ViewModels.PalestranteViewModel)">
             <summary>
             POST: api/Palestrante
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Put(System.Int32,ProjAgil.Dominio.Entidades.Palestrante)">
+        <member name="M:ProjAgil.WebAPI.Controllers.PalestranteController.Put(System.Int32,ProjAgil.Dominio.ViewModels.PalestranteViewModel)">
             <summary>
             PUT: api/Palestrante/5
             </summary>
