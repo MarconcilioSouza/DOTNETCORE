@@ -9,9 +9,12 @@ namespace ProjAgil.WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Eventos
+    /// [ApiController] é do decorador da classe, isso faz é a nova forma de fazer as
+    /// validações como o FromBody e o ModelState.IsValid.
+    /// Já faz a validação dos data anotation
     /// </summary>
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] 
     public class EventoController : ControllerBase
     {
         private readonly IEventoAppService eventoAppService;
@@ -94,7 +97,7 @@ namespace ProjAgil.WebAPI.Controllers
         {
             try
             {
-                eventoAppService.Add(model);
+                var evento = eventoAppService.Add(model);
                 if(await eventoAppService.SaveChangesAsync())
                 {
                     return Created($"/api/evento/{model.Id}", model);
@@ -109,7 +112,7 @@ namespace ProjAgil.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Faz a atualiza��o do evento
+        /// Faz a atualização do evento
         /// </summary>
         /// <param name="eventoId"></param>
         /// <param name="model"></param>
@@ -124,10 +127,10 @@ namespace ProjAgil.WebAPI.Controllers
                 if(evento == null)
                     return NotFound();
 
-                eventoAppService.Update(model);
+                evento = eventoAppService.Update(model);
                 if(await eventoAppService.SaveChangesAsync())
                 {
-                    return Created($"/api/evento/{model.Id}", model);
+                    return Created($"/api/evento/{evento.Id}", evento);
                 }
 
             }

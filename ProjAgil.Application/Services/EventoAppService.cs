@@ -19,16 +19,18 @@ namespace ProjAgil.Application.Services
             this.mapper = mapper;
         }
 
-        public void Add(EventoViewModel entity)
+        public EventoViewModel Add(EventoViewModel entity)
         {
             var evento = mapper.Map<Evento>(entity);
             eventoRepositorio.Add(evento);
+            return mapper.Map<EventoViewModel>(evento);
         }
 
-        public void Update(EventoViewModel entity)
+        public EventoViewModel Update(EventoViewModel entity)
         {
             var evento = mapper.Map<Evento>(entity);
             eventoRepositorio.Update(evento);
+            return mapper.Map<EventoViewModel>(evento);
         }
 
         public void Delete(EventoViewModel entity)

@@ -44,7 +44,7 @@
         </member>
         <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Put(System.Int32,ProjAgil.Dominio.ViewModels.EventoViewModel)">
             <summary>
-            Faz a atualiza��o do evento
+            Faz a atualização do evento
             </summary>
             <param name="eventoId"></param>
             <param name="model"></param>

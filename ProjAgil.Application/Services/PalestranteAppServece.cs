@@ -19,16 +19,19 @@ namespace ProjAgil.Application.Services
             this.mapper = mapper;
         }
 
-        public void Add(PalestranteViewModel entity)
+        public PalestranteViewModel Add(PalestranteViewModel entity)
         {
             var palestrante = mapper.Map<Palestrante>(entity);
             palestranteRepositorio.Add(palestrante);
+            return mapper.Map<PalestranteViewModel>(palestrante);
         }
 
-        public void Update(PalestranteViewModel entity)
+        public PalestranteViewModel Update(PalestranteViewModel entity)
         {
             var palestrante = mapper.Map<Palestrante>(entity);
             palestranteRepositorio.Update(palestrante);
+            return  mapper.Map<PalestranteViewModel>(palestrante);
+
         }
 
         public void Delete(PalestranteViewModel entity)
