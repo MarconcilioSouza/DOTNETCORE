@@ -24,6 +24,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Upload">
+            <summary>
+            Post de imagens
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ProjAgil.WebAPI.Controllers.EventoController.Get(System.Int32)">
             <summary>
             Retorna o evento pelo id do evento
@@ -106,6 +112,35 @@
             </summary>
             <param name="palestranteId"></param>
             <returns></returns>
+        </member>
+        <member name="T:ProjAgil.WebAPI.Startup">
+            <summary>
+            Startup do projeto
+            </summary>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:ProjAgil.WebAPI.Startup.Configuration">
+            <summary>
+            IConfiguration
+            </summary>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:ProjAgil.WebAPI.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

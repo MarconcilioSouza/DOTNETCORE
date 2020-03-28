@@ -26,13 +26,14 @@ export class EventosComponent implements OnInit {
   mostrarImagem: boolean = false;
   registerForm: FormGroup;
   titulo = 'Eventos';
+  fileNameToUpdate: string;
 
   // tslint:disable-next-line: variable-name
   _FiltroLista: string;
   eventosFiltrados: Evento[];
 
   file: File;
-  fileNameToUpdate: string;
+  dataAtual: string;
 
   constructor(private eventoService: EventoService
             , private modalService: BsModalService
@@ -53,8 +54,10 @@ export class EventosComponent implements OnInit {
   editarEvento(evento: Evento, template: any) {
     this.modoSalvar = 'put';
     this.openModal(template);
-    this.evento = evento;
-    this.registerForm.patchValue(evento);
+    this.evento = Object.assign({}, evento); // faz uma copia binding do evento para o this.evento
+    this.evento.imagemUrl = '';
+    this.fileNameToUpdate = evento.imagemUrl.toString();
+    this.registerForm.patchValue(this.evento);
   }
 
   novoEvento(template: any) {
@@ -102,10 +105,37 @@ export class EventosComponent implements OnInit {
     );
   }
 
+  uploadImagem() {
+    if (this.modoSalvar === 'post') {
+      // obtem o nome do arquivo que é passado pelo formControlName
+      const nomeArquivo = this.evento.imagemUrl.split('\\', 3);
+      this.evento.imagemUrl = nomeArquivo[2];
+
+      // Envia a imagem para o servidor
+      this.eventoService.postUpload(this.file, nomeArquivo[2]).subscribe(
+        () => {
+          this.dataAtual = new Date().getMilliseconds().toString();
+          this.getEventos();
+        }
+      );
+    } else {
+      this.evento.imagemUrl = this.fileNameToUpdate;
+      this.eventoService.postUpload(this.file, this.fileNameToUpdate).subscribe(
+        () => {
+          this.dataAtual = new Date().getMilliseconds().toString();
+          this.getEventos();
+        }
+      );
+    }
+  }
+
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
         this.evento = Object.assign({}, this.registerForm.value);
+
+        this.uploadImagem();
+
         this.eventoService.postEvento(this.evento).subscribe(
           (novoEvento: Evento) => {
             console.log(novoEvento);
@@ -121,6 +151,9 @@ export class EventosComponent implements OnInit {
         // Object.assign concartena o objeto com mais campos...
         // no caso os campos do formulario com o id do evento
         this.evento = Object.assign({id: this.evento.id}, this.registerForm.value);
+
+        this.uploadImagem();
+
         this.eventoService.putEvento(this.evento).subscribe(
           () => {
             template.hide();
@@ -148,8 +181,9 @@ export class EventosComponent implements OnInit {
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
+    console.log(event);
 
+    const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       this.file = event.target.files;
       console.log(this.file);
