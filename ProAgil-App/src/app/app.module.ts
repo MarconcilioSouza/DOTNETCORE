@@ -7,6 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,17 +15,30 @@ import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
 import { DateTimeFormatPipe } from './_helps/DateTimeFormat.pipe';
 import { EventoService } from './_services/evento.service';
+import { PalestrantesComponent } from './palestrantes/palestrantes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ContatosComponent } from './contatos/contatos.component';
+import { TituloComponent } from './_shared/titulo/titulo.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      EventosComponent,
       NavComponent,
-      DateTimeFormatPipe
+      EventosComponent,
+      DateTimeFormatPipe,
+      PalestrantesComponent,
+      DashboardComponent,
+      TituloComponent,
+      ContatosComponent
    ],
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
+      ToastrModule.forRoot({
+         timeOut: 30000,
+         preventDuplicates: true,
+         progressBar: true,
+      }),
       BsDropdownModule.forRoot(),
       TooltipModule.forRoot(),
       ModalModule.forRoot(),

@@ -45,3 +45,4 @@ npm install -g @angular/cli <br />
 
 <a href="https://valor-software.com/ngx-bootstrap/#/">ngx-bootstrap</a> <br />
 <a href="https://getbootstrap.com/">bootstrap</a> <br />
+<a href="https://www.npmjs.com/package/ngx-toastr">ngx-toastr</a><br />

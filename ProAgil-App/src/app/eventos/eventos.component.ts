@@ -1,7 +1,8 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { defineLocale, BsLocaleService, ptBrLocale } from 'ngx-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 defineLocale('pt-br', ptBrLocale);
 
 import { EventoService } from '../_services/evento.service';
@@ -15,21 +16,29 @@ import { Evento } from '../_models/Evento';
 export class EventosComponent implements OnInit {
   eventos: Evento[];
   evento: Evento;
+  dataEvento: string;
   modoSalvar = 'post';
   bodyDeletarEvento = '';
+  // tslint:disable: no-inferrable-types
   imagemLargura: number = 50;
   imagemAltura: number = 30;
-  imagemMargim: number = 2;
+  imagemMargem: number = 2;
   mostrarImagem: boolean = false;
   registerForm: FormGroup;
+  titulo = 'Eventos';
 
+  // tslint:disable-next-line: variable-name
   _FiltroLista: string;
   eventosFiltrados: Evento[];
 
+  file: File;
+  fileNameToUpdate: string;
+
   constructor(private eventoService: EventoService
-    , private modalService: BsModalService
-    , private fb: FormBuilder
-    , private localeService: BsLocaleService ) {
+            , private modalService: BsModalService
+            , private fb: FormBuilder
+            , private localeService: BsLocaleService
+            , private toastr: ToastrService ) {
       this.localeService.use('pt-br');
     }
 
@@ -64,8 +73,10 @@ export class EventosComponent implements OnInit {
       () => {
           template.hide();
           this.getEventos();
+          this.toastr.success('Deletado com sucesso!');
         }, error => {
           console.log(error);
+          this.toastr.error(`Erro ao delatar, ${error}`);
         }
     );
   }
@@ -100,8 +111,10 @@ export class EventosComponent implements OnInit {
             console.log(novoEvento);
             template.hide();
             this.getEventos();
+            this.toastr.success('Evento adicionado com sucesso!');
           }, error => {
             console.log(error);
+            this.toastr.error(`Erro ao adicionar o evento, ${error}`);
           }
         );
       } else {
@@ -112,8 +125,10 @@ export class EventosComponent implements OnInit {
           () => {
             template.hide();
             this.getEventos();
+            this.toastr.success('Evento alterado com sucesso!');
           }, error => {
             console.log(error);
+            this.toastr.error(`Erro ao adicionar o evento, ${error}`);
           }
         );
       }
@@ -132,13 +147,23 @@ export class EventosComponent implements OnInit {
     });
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      this.file = event.target.files;
+      console.log(this.file);
+    }
+  }
+
   getEventos() {
     this.eventoService.getAllEvento().subscribe(
+      // tslint:disable-next-line: variable-name
       (_eventos: Evento[]) => {
       this.eventos = _eventos;
       this.eventosFiltrados = this.eventos;
     }, error => {
-      console.log(error);
+      this.toastr.error(`Erro ao tenta carregar eventos, ${error}`);
     });
   }
 }
