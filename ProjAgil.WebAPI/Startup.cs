@@ -8,6 +8,8 @@ using ProjAgil.Infra.IoC;
 using ProjAgil.Infra.IoC.Configurations;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ProjAgil.WebAPI
 {
@@ -36,13 +38,29 @@ namespace ProjAgil.WebAPI
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigurationServices.ConfigureDependencyInjection(services, Configuration);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddCors();
+            DatabaseSetup.AddDatabaseSetup(services, Configuration);
+            IdentitySetup.AddIdentitySetup(services, Configuration);
+            AuthenticationJwtSetup.AddAuthenticationJwtSetup(services, Configuration);
+            AutoMapperSetup.AddAutoMapperSetup(services);
+            DependencyInjectionSetup.AddDependencyInjectionSetup(services);
+            SwaggerSetup.AddSwaggerSetup(services);
 
+            // Determinar que a api vai chamar uma determinada controller
+            services.AddMvc(options =>
+            {
+                // configuração que obrigar que seja informado uma autenticação
+                // garante que todas as requests sejam autenticadas
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+
+                options.Filters.Add(new AuthorizeFilter(policy));
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             // Configuração para não retorna referencia cicular no json
-            services.AddMvc()
-                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddCors();
         }
 
         /// <summary>
@@ -62,6 +80,7 @@ namespace ProjAgil.WebAPI
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions(){

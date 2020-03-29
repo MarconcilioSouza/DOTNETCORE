@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjAgil.Dominio.Entidades;
+using ProjAgil.Dominio.Identity;
 using ProjAgil.Dominio.ViewModels;
 
 namespace Equinox.Application.AutoMapper
@@ -13,6 +14,8 @@ namespace Equinox.Application.AutoMapper
             CreateMap<LoteViewModel, Lote>();
             CreateMap<PalestranteViewModel, Palestrante>();
             CreateMap<RedeSocialViewModel, RedeSocial>();
+            CreateMap<UserViewModel, User>();
+            CreateMap<UserLoginViewMode, User>();
         }
     }
 }

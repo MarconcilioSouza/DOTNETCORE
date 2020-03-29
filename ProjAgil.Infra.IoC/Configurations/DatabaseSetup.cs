@@ -8,6 +8,11 @@ namespace ProjAgil.Infra.IoC.Configurations
 {
     public static class DatabaseSetup
     {
+        /// <summary>
+        /// Configuração do data context e conexão do banco
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
         public static void AddDatabaseSetup(this IServiceCollection services, IConfiguration configuration)
         {
             if (services == null) 

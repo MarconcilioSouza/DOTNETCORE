@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjAgil.Dominio.Entidades;
+using ProjAgil.Dominio.Identity;
 using ProjAgil.Dominio.ViewModels;
 using System.Linq;
 
@@ -15,6 +16,9 @@ namespace Equinox.Application.AutoMapper
             CreateMap<Palestrante, PalestranteViewModel>()
                 .ForMember(dest => dest.Eventos, opt => { opt.MapFrom(src => src.PalestrantesEventos.Select(x => x.Evento).ToList()); });
             CreateMap<RedeSocial, RedeSocialViewModel>();
+
+            CreateMap<User, UserViewModel>();
+            CreateMap<User, UserLoginViewMode>();
         }
     }
 }

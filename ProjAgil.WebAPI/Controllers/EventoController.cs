@@ -19,7 +19,7 @@ namespace ProjAgil.WebAPI.Controllers
     /// Já faz a validação dos data anotation
     /// </summary>
     [Route("api/[controller]")]
-    [ApiController] 
+    [ApiController]
     public class EventoController : ControllerBase
     {
         private readonly IEventoAppService eventoAppService;
@@ -45,9 +45,9 @@ namespace ProjAgil.WebAPI.Controllers
                 var results = await eventoAppService.ObterEventosAsync();
                 return Ok(results);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados Falhou!");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco de dados Falhou {ex.Message}");
             }
         }
 
@@ -137,7 +137,7 @@ namespace ProjAgil.WebAPI.Controllers
             try
             {
                 var evento = eventoAppService.Add(model);
-                if(await eventoAppService.SaveChangesAsync())
+                if (await eventoAppService.SaveChangesAsync())
                 {
                     return Created($"/api/evento/{model.Id}", model);
                 }
@@ -163,11 +163,11 @@ namespace ProjAgil.WebAPI.Controllers
             try
             {
                 var evento = await eventoAppService.ObterEventoAsyncPorEventoId(eventoId, false);
-                if(evento == null)
+                if (evento == null)
                     return NotFound();
 
                 evento = eventoAppService.Update(model);
-                if(await eventoAppService.SaveChangesAsync())
+                if (await eventoAppService.SaveChangesAsync())
                 {
                     return Created($"/api/evento/{evento.Id}", evento);
                 }
@@ -192,11 +192,11 @@ namespace ProjAgil.WebAPI.Controllers
             try
             {
                 var evento = await eventoAppService.ObterEventoAsyncPorEventoId(eventoId, false);
-                if(evento == null)
+                if (evento == null)
                     return NotFound();
 
                 eventoAppService.Delete(evento);
-                if(await eventoAppService.SaveChangesAsync())
+                if (await eventoAppService.SaveChangesAsync())
                 {
                     return Ok();
                 }
