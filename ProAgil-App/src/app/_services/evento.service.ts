@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Evento } from '../_models/Evento';
+import { Constants } from '../util/Constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
-  baseURL = 'http://localhost:5000/api/evento';
+  baseURL = Constants.baseURL + '/api/evento';
 
   constructor(private http: HttpClient) { }
 

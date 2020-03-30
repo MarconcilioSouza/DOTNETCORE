@@ -7,6 +7,7 @@ defineLocale('pt-br', ptBrLocale);
 
 import { EventoService } from '../_services/evento.service';
 import { Evento } from '../_models/Evento';
+import { Constants } from '../util/Constants';
 
 @Component({
   selector: 'app-eventos',
@@ -27,7 +28,7 @@ export class EventosComponent implements OnInit {
   registerForm: FormGroup;
   titulo = 'Eventos';
   fileNameToUpdate: string;
-
+  baseURL = Constants.baseURL;
   // tslint:disable-next-line: variable-name
   _FiltroLista: string;
   eventosFiltrados: Evento[];

@@ -5,12 +5,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <div *ngIf="loggedIn()" class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" routerLinkActive="active">
-                      <!--routerLink="palestrantes" busca o nome que esta na rota 
-                        const routes: Routes = [
-                        no arquivo app-routing.module -->
                     <a class="nav-link" routerLink="eventos">Eventos</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
@@ -21,7 +18,7 @@
                 </li>
             </ul>
         </div>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="loggedIn()">
             <li class="nav-item dropdown" dropdown>
                 <a dropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">

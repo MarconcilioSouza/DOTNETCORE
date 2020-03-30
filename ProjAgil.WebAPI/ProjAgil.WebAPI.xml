@@ -113,36 +113,6 @@
             <param name="palestranteId"></param>
             <returns></returns>
         </member>
-        <member name="T:ProjAgil.WebAPI.Controllers.UserController">
-            <summary>
-            Controller de autenticação de usuário
-            </summary>
-        </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.UserController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Identity.UserManager{ProjAgil.Dominio.Identity.User},Microsoft.AspNetCore.Identity.SignInManager{ProjAgil.Dominio.Identity.User},AutoMapper.IMapper)">
-            <summary>
-            Construtor
-            </summary>
-        </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.UserController.Get">
-            <summary>
-            Retorna os usuarios
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.UserController.Register(ProjAgil.Dominio.ViewModels.UserViewModel)">
-            <summary>
-            Registra o usuário informado
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ProjAgil.WebAPI.Controllers.UserController.Login(ProjAgil.Dominio.ViewModels.UserLoginViewMode)">
-            <summary>
-            Realizar o login do usuario
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
         <member name="T:ProjAgil.WebAPI.Startup">
             <summary>
             Startup do projeto
