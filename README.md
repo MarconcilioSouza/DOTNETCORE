@@ -41,6 +41,9 @@ DOTNETCORE dotnet sln ProAgil.sln add ProjAgil.WebAPI/ProjAgil.WebAPI.csproj<br 
 ### Instalções
 npm install -g @angular/cli <br />
 
+#### Comandos CLI
+Criando Guardião =>  ng g g nomeGuardiao
+
 ### Bibliotecas para usar com o Angular;
 
 <a href="https://valor-software.com/ngx-bootstrap/#/">ngx-bootstrap</a> <br />

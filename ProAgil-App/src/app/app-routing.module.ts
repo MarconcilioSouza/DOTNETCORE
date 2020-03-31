@@ -8,18 +8,24 @@ import { ContatosComponent } from './contatos/contatos.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
+import { AuthGuard } from './auth/auth.guard';
 
 // criar as rotas que podem ser acessadas no site.
 const routes: Routes = [
   { path: 'user', component: UserComponent,
-    children: [ // obtem as rotas dos filhos que estão dentro do component user. 
+
+  // obtem as rotas dos filhos que estão dentro do component user.
+    children: [
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
     ] },
-  { path: 'eventos', component: EventosComponent },
-  { path: 'palestrantes', component: PalestrantesComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'contatos', component: ContatosComponent },
+
+  // canActivate: [AuthGuard]  controla as paginas com autenticação.
+  { path: 'eventos', component: EventosComponent, canActivate: [AuthGuard] },
+  { path: 'palestrantes', component: PalestrantesComponent, canActivate: [AuthGuard]  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]  },
+  { path: 'contatos', component: ContatosComponent, canActivate: [AuthGuard]  },
+
   // caso não seja informado nada na rota será enviada para rota abaixo.
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
