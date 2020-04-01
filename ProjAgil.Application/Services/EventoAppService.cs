@@ -61,5 +61,15 @@ namespace ProjAgil.Application.Services
         {
             return await eventoRepositorio.SaveChangesAsync();
         }
+
+        public void DeleteLotes(IEnumerable<LoteViewModel> lotes)
+        {
+            eventoRepositorio.DeleteLotes(mapper.Map<List<Lote>>(lotes));
+        }
+
+        public void DeleteRedesSociais(IEnumerable<RedeSocialViewModel> redesSociais)
+        {
+            eventoRepositorio.DeleteRedesSociais(mapper.Map<List<RedeSocial>>(redesSociais));
+        }
     }
 }

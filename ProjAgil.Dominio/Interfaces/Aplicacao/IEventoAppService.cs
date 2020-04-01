@@ -10,5 +10,7 @@ namespace ProjAgil.Dominio.Interfaces.Aplicacao
         Task<List<EventoViewModel>> ObterEventosAsync(bool incluirPalestrates = false);
         Task<List<EventoViewModel>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates);
         Task<EventoViewModel> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates);
+        void DeleteLotes(IEnumerable<LoteViewModel> lotes);
+        void DeleteRedesSociais(IEnumerable<RedeSocialViewModel> redesSociais);
     }
 }

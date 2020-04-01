@@ -64,5 +64,15 @@ namespace ProjAgil.Infra.Data.Repositorio
 
             return await query.FirstOrDefaultAsync();
         }
+
+        public void DeleteLotes(IEnumerable<Lote> lotes)
+        {
+            proAgilContext.RemoveRange(lotes);
+        }
+
+        public void DeleteRedesSociais(IEnumerable<RedeSocial> redesSociais)
+        {
+            proAgilContext.RemoveRange(redesSociais);
+        }
     }
 }

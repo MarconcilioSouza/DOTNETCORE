@@ -9,5 +9,7 @@ namespace ProjAgil.Dominio.Interfaces.Repositorio
         Task<List<Evento>> ObterEventosAsync(bool incluirPalestrates = false);
         Task<List<Evento>> ObterEventoAsyncPorTema(string tema, bool incluirPalestrates);
         Task<Evento> ObterEventoAsyncPorEventoId(int eventoId, bool incluirPalestrates);
+        void DeleteLotes(IEnumerable<Lote> lotes);
+        void DeleteRedesSociais(IEnumerable<RedeSocial> redesSociais);
     }
 }

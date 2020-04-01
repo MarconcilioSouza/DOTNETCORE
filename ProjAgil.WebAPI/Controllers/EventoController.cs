@@ -9,6 +9,8 @@ using ProjAgil.Dominio.Interfaces.Aplicacao;
 using Microsoft.AspNetCore.Http;
 using ProjAgil.Dominio.ViewModels;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjAgil.WebAPI.Controllers
 {
@@ -162,9 +164,28 @@ namespace ProjAgil.WebAPI.Controllers
         {
             try
             {
+                var idLotes = new List<int>();
+                var idRedesSociais = new List<int>();
+
+                idLotes.AddRange(model.Lotes.Select(x => x.Id));
+                idRedesSociais.AddRange(model.RedesSociais.Select(x => x.Id));
+
                 var evento = await eventoAppService.ObterEventoAsyncPorEventoId(eventoId, false);
                 if (evento == null)
                     return NotFound();
+
+                var lotes = evento.Lotes.Where(x => !idLotes.Contains(x.Id));
+                var redesSociais = evento.RedesSociais.Where(x => !idRedesSociais.Contains(x.Id));
+
+                if (lotes.Any())
+                {
+                    eventoAppService.DeleteLotes(lotes);
+                }
+
+                if (redesSociais.Any())
+                {
+                    eventoAppService.DeleteRedesSociais(redesSociais);
+                }
 
                 evento = eventoAppService.Update(model);
                 if (await eventoAppService.SaveChangesAsync())
@@ -173,7 +194,7 @@ namespace ProjAgil.WebAPI.Controllers
                 }
 
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados Falhou!");
             }
