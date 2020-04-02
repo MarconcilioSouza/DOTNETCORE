@@ -51,3 +51,20 @@ Criando Guardião =>  ng g g nomeGuardiao
 <a href="https://www.npmjs.com/package/ngx-toastr">ngx-toastr</a><br />
 <a href="https://www.npmjs.com/package/ngx-mask">ngx-mask</a><br />
 <a href="https://www.npmjs.com/package/ngx-currency">ngx-currency</a>
+<a href="https://bootswatch.com/">bootswatch</a>
+<a href="https://bootsnipp.com/snippets/aMp3k">bootsnipp amp3k</a>
+
+### Configuração para Deploy do Angular
+
+<a href="https://angular.io/guide/deployment#server-configuration">angular.io configuration</a> <br />
+Instalar => npm install source-map-explorer --save-dev <br />
+ng build --prod --source-map <br />
+ls dist/*.bundle.js <br />
+Após executar é criado a pasta ProAgil-App\dist\ProAgil-App , com os arquivos para deploy.
+
+### Configuração para Deploy do >NET
+
+Execultar => dotnet publish        --   Publicar um projeto do .NET para implantação. <br>
+dotnet publish -o C:/Projetos/ProAgil ... caminho onde que salvar as dll <br> <br>
+Para roda a aplicação <br>
+C:\Projetos\ProAgil>dotnet ProjAgil.WebAPI.dll
