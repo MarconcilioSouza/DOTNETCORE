@@ -50,3 +50,4 @@ Criando Guardião =>  ng g g nomeGuardiao
 <a href="https://getbootstrap.com/">bootstrap</a> <br />
 <a href="https://www.npmjs.com/package/ngx-toastr">ngx-toastr</a><br />
 <a href="https://www.npmjs.com/package/ngx-mask">ngx-mask</a><br />
+<a href="https://www.npmjs.com/package/ngx-currency">ngx-currency</a>

@@ -108,6 +108,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label>Preço</label>
+                    <!-- Usa o import { NgxCurrencyModule } from 'ngx-currency';-->
                     <input type="text" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
                       class="form-control" [ngClass]="{'is-invalid': lotes.get(i+'.preco').errors && lotes.get(i+'.preco').touched}"
                       formControlName="preco" placeholder="R$ 0,00">
@@ -158,9 +159,8 @@
                 </div>
                 <div class="form-group col-md-8">
                   <label>Link</label>
-                  <input type="text" prefix="http://" mask=""
-                    [ngClass]="{'is-invalid': redesSociais.get(j+'.url').errors && redesSociais.get(j+'.url').touched}"
-                    formControlName="url" class="form-control" placeholder="URL">
+                  <input type="text" prefix="http://" mask="" [ngClass]="{'is-invalid': redesSociais.get(j+'.url').errors 
+                  && redesSociais.get(j+'.url').touched}" formControlName="url" class="form-control" placeholder="URL">
                 </div>
               </div>
             </fieldset>
@@ -173,8 +173,7 @@
       <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
           <!-- {{registerForm.value | json}} -->
-          <button [disabled]="!registerForm.valid" class="btn btn-success my-2" (click)="salvarEvento()">Salvar
-            Alterações</button>
+          <button [disabled]="!registerForm.valid" class="btn btn-success my-2" (click)="salvarEvento()">Salvar Alterações</button>
         </div>
       </div>
     </div>
